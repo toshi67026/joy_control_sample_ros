@@ -1,0 +1,6 @@
+<launch>
+  <node name="joy" pkg="joy" type="joy_node"/>
+  <node name="agent_body" pkg="coverage_control_sandbox" type="agent_body.py" output="screen"/>
+  <node name="controller" pkg="coverage_control_sandbox" type="controller.py" output="screen"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find coverage_control_sandbox)/config/joy_control.rviz"/>
+</launch>
