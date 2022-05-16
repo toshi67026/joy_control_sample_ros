@@ -1,0 +1,8 @@
+world_frame: "world"
+
+controller:
+  timer_period: 0.01
+
+agent_body:
+  agent_frame: "agent"
+  sampling_time: 0.01

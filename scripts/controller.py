@@ -14,11 +14,7 @@ class Controller:
         self.joy_sub = rospy.Subscriber("joy", Joy, self.joy_callback, queue_size=1)
         self.curr_pose_sub = rospy.Subscriber("curr_pose", Pose, self.curr_pose_callback, queue_size=1)
 
-        # get frame name
-        self.world_frame = str(rospy.get_param("world_frame", default="world"))
-        self.agent_frame = str(rospy.get_param("agent_frame", default="agent"))
-
-        self.timer_period = float(rospy.get_param("timer_period", default=0.01))
+        self.timer_period = float(rospy.get_param("~timer_period", default=0.01))
         self.timer = rospy.Timer(rospy.Duration(self.timer_period), self.timer_callback)
 
         self.cmd_vel_pub = rospy.Publisher("cmd_vel", Twist, queue_size=1)

@@ -17,14 +17,14 @@ class AgentBody:
         self.curr_pose = Pose()
 
         # get frame name
-        self.world_frame = str(rospy.get_param("world_frame", default="world"))
-        self.agent_frame = str(rospy.get_param("agent_frame", default="agent"))
+        self.world_frame = str(rospy.get_param("/world_frame", default="world"))
+        self.agent_frame = str(rospy.get_param("~agent_frame", default="agent"))
 
         # tf2
         self.tf_buffer = Buffer()
         self.broadcaster = TransformBroadcaster()
 
-        self.sampling_time = float(rospy.get_param("sampling_time", default=0.01))
+        self.sampling_time = float(rospy.get_param("~sampling_time", default=0.01))
 
     def cmd_vel_callback(self, msg: Twist) -> None:
         position = self.curr_pose.position
@@ -33,8 +33,8 @@ class AgentBody:
             y=position.y + self.sampling_time * msg.linear.y,
             z=position.z + self.sampling_time * msg.linear.z,
         )
-        orientaion = self.curr_pose.orientation
-        _, _, yaw = euler_from_quaternion(quaternion=[orientaion.x, orientaion.y, orientaion.z, orientaion.w])
+        orientation = self.curr_pose.orientation
+        _, _, yaw = euler_from_quaternion(quaternion=[orientation.x, orientation.y, orientation.z, orientation.w])
 
         orientation_array = quaternion_from_euler(ai=0, aj=0, ak=yaw + self.sampling_time * msg.angular.z)
         self.curr_pose.orientation = Quaternion(

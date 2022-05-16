@@ -1,6 +1,7 @@
 <launch>
+  <rosparam file="$(find joy_control_sample_ros)/config/joy_control.yaml"/>
   <node name="joy" pkg="joy" type="joy_node"/>
-  <node name="agent_body" pkg="coverage_control_sandbox" type="agent_body.py" output="screen"/>
-  <node name="controller" pkg="coverage_control_sandbox" type="controller.py" output="screen"/>
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find coverage_control_sandbox)/config/joy_control.rviz"/>
+  <node name="agent_body" pkg="joy_control_sample_ros" type="agent_body.py" output="screen"/>
+  <node name="controller" pkg="joy_control_sample_ros" type="controller.py" output="screen"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find joy_control_sample_ros)/rviz/joy_control.rviz"/>
 </launch>
