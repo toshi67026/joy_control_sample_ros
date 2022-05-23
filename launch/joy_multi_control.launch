@@ -1,0 +1,18 @@
+<launch>
+  <rosparam file="$(find joy_control_sample_ros)/config/joy_control.yaml"/>
+
+  <group ns="agent_0">
+    <node name="joy" pkg="joy" type="joy_node"/>
+    <node name="agent_body" pkg="joy_control_sample_ros" type="agent_body.py" output="screen"/>
+    <node name="controller" pkg="joy_control_sample_ros" type="controller.py" output="screen"/>
+  </group>
+  <group ns="agent_1">
+    <param name="x_init" value="1"/>
+    <param name="y_init" value="0.5"/>
+    <node name="joy" pkg="joy" type="joy_node"/>
+    <node name="agent_body" pkg="joy_control_sample_ros" type="agent_body.py" output="screen"/>
+    <node name="controller" pkg="joy_control_sample_ros" type="controller.py" output="screen"/>
+  </group>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find joy_control_sample_ros)/rviz/joy_multi_control.rviz"/>
+</launch>
