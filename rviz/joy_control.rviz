@@ -3,18 +3,13 @@ Panels:
     Help Height: 78
     Name: Displays
     Property Tree Widget:
-      Expanded:
-        - /Global Options1
-        - /Status1
+      Expanded: ~
       Splitter Ratio: 0.5
     Tree Height: 553
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
-    Expanded:
-      - /2D Pose Estimate1
-      - /2D Nav Goal1
-      - /Publish Point1
+    Expanded: ~
     Name: Tool Properties
     Splitter Ratio: 0.5886790156364441
   - Class: rviz/Views
@@ -57,7 +52,7 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        agent:
+        base_link:
           Value: true
         world:
           Value: true
@@ -69,9 +64,17 @@ Visualization Manager:
       Show Names: true
       Tree:
         world:
-          agent:
+          base_link:
             {}
       Update Interval: 0
+      Value: true
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: /trajectory_marker
+      Name: trajectory
+      Namespaces:
+        trajectory: true
+      Queue Size: 100
       Value: true
   Enabled: true
   Global Options:
@@ -87,16 +90,6 @@ Visualization Manager:
     - Class: rviz/Select
     - Class: rviz/FocusCamera
     - Class: rviz/Measure
-    - Class: rviz/SetInitialPose
-      Theta std deviation: 0.2617993950843811
-      Topic: /initialpose
-      X std deviation: 0.5
-      Y std deviation: 0.5
-    - Class: rviz/SetGoal
-      Topic: /move_base_simple/goal
-    - Class: rviz/PublishPoint
-      Single click: true
-      Topic: /clicked_point
   Value: true
   Views:
     Current:

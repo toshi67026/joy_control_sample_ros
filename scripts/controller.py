@@ -11,15 +11,15 @@ class Controller:
     def __init__(self) -> None:
         rospy.init_node("controller")
 
-        self.joy_sub = rospy.Subscriber("joy", Joy, self.joy_callback, queue_size=1)
-        self.curr_pose_sub = rospy.Subscriber("curr_pose", Pose, self.curr_pose_callback, queue_size=1)
-
-        self.timer_period = float(rospy.get_param("~timer_period", default=0.01))
-        self.timer = rospy.Timer(rospy.Duration(self.timer_period), self.timer_callback)
+        rospy.Subscriber("joy", Joy, self.joy_callback, queue_size=1)
+        rospy.Subscriber("curr_pose", Pose, self.curr_pose_callback, queue_size=1)
 
         self.cmd_vel_pub = rospy.Publisher("cmd_vel", Twist, queue_size=1)
         self.cmd_vel_in_agent = Twist()
         self.cmd_vel_in_world = Twist()
+
+        self.timer_period = float(rospy.get_param("~timer_period", default=0.01))
+        self.timer = rospy.Timer(rospy.Duration(self.timer_period), self.timer_callback)
 
     def joy_callback(self, msg: Joy) -> None:
         # invert value of x to match your vision
