@@ -1,0 +1,7 @@
+activate_cbf: True
+
+cbf:
+  limit: [[0.5, 2.5], [0.5, 2.5]]
+  theta: 0.2
+  p: 2
+  keep_inside: False

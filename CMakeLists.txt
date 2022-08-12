@@ -10,3 +10,5 @@ find_package(catkin REQUIRED COMPONENTS
   tf2_ros
   visualization_msgs
 )
+
+catkin_python_setup()
